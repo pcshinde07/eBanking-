@@ -1,7 +1,9 @@
 package com.eBanking.pageObjects;
-
+//https://github.com/pcshinde07/eBanking_V2.git
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -15,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
+
 
 import com.eBanking.utilites.ReadConfig;
 
@@ -52,16 +55,20 @@ public class BaseClass {
 		driver.quit();
 	}
 	
-	public void captureScreen(WebDriver driver,String Tname) {
-		TakesScreenshot ts=(TakesScreenshot)driver;
+	public static String captureScreen(String Tname) {
+		String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+		TakesScreenshot ts=(TakesScreenshot) driver;
 		File src=ts.getScreenshotAs(OutputType.FILE);
-		File target=new File(".\\Screenshots\\"+Tname+".png");
+		String Destination=System.getProperty("user.dir")+"/Screenshots/"+ Tname+timestamp+".png";
+		File target=new File(Destination);
 		try {
 			FileUtils.copyFile(src, target);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return Destination;
 	}
+
 
 }

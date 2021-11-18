@@ -1,5 +1,6 @@
 package com.eBanking.testCases;
-
+//https://github.com/pcshinde07/eBanking-.git
+//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
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -26,7 +27,7 @@ public class TC_LoginTest_001 extends BaseClass{
 			
 		}
 		else {
-			captureScreen(driver,"LoginTest");
+			
 			Assert.assertTrue(false);
 			logger.info("Login Test Failed");
 		}

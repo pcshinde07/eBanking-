@@ -15,7 +15,7 @@ public class TC_LoginDDT_002 extends BaseClass {
 	LoginPage lp;
 	
 	
-	@Test(dataProvider="LoginData")
+	@Test(dataProvider="Input Data")
 	public void loginDDT(String UserName, String Password){
 		lp=new LoginPage(driver);
 		lp.setUserName(UserName);
@@ -53,7 +53,7 @@ public class TC_LoginDDT_002 extends BaseClass {
 	
 	
 	
-	@DataProvider(name="LoginData")
+	@DataProvider(name="Input Data")
 		String[][] getData() throws IOException{
 	String path="C:\\Users\\Pratik Shinde\\eclipse-workspace\\introduction\\eBanking\\src\\test\\java\\com\\eBanking\\testData\\Input Data.xlsx";
 	utils= new XLUtils(path);

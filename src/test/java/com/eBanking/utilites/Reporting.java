@@ -55,18 +55,13 @@ public class Reporting extends TestListenerAdapter {
 	public void onTestFailure(ITestResult tr) {
 		logger = extentRep.createTest(tr.getName()); // crate each failed test entry in the report
 		logger.log(Status.FAIL, MarkupHelper.createLabel(tr.getName(), ExtentColor.RED));
-		String ScreenshotPath = System.getProperty("user.dir") + ".\\Screenshots" + tr.getName() + ".png";
-
-		File f = new File(ScreenshotPath);
-		if (f.exists()) {
-			try {
-				logger.fail("Screenshot is below:" + logger.addScreencastFromPath(ScreenshotPath));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+		try {
+			logger.addScreenCaptureFromPath(tr.getName());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	
 	}
 
 	public void onTestSkipped(ITestResult tr) {
